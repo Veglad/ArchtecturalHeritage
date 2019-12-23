@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Buildings from './pages/buildings/Buildings';
+import { Switch, Route, Redirect } from "react-router";
+import { Box } from '@material-ui/core'
+import AppBar from './components/AppBar';
+import { RouteConstants } from './RouteConstants';
+import Funds from './pages/funds/Funds';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Box>
+        <AppBar title="Buildings"/>
+        <Box >
+            <Switch>
+                <Route exact path={RouteConstants.home} component={Buildings} />
+                <Route path={RouteConstants.buildings} component={Buildings} />
+                <Route path={RouteConstants.funds} component={Funds} />
+                <Redirect to={RouteConstants.home} />
+            </Switch>
+        </Box>
+    </Box>
+)
+  // return <Buildings buildings={buildings}/>
 }
 
 export default App;
