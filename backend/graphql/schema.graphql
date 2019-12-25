@@ -1,0 +1,44 @@
+schema {
+    query: Query
+}
+
+type Query {
+    cities: [City!]!
+    buildings(fundId: ID): [Building!]!
+    funds(buildingId: ID): [Fund!]!
+}
+
+type City {
+    id: ID!
+    name: String!
+    country: String!
+    chiefArchitector: String!
+    buildings: [Building!]!
+}
+
+type Building {
+    id: ID!
+    name: String!
+    country: String!
+    architector: String!
+    constructionYear: Int!
+    style: String!
+    description: String!
+}
+
+type Fund {
+    id: ID!
+    name: String!
+    adressOfRegistration: String!
+    ceo: String!
+    yearHeritageBudget: Float!
+}
+
+type Donation {
+    fund: Fund!
+    building: Building!
+    date: Date!
+    amount: Float!
+}
+
+scalar Date
