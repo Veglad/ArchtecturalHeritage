@@ -11,7 +11,7 @@ const cities: IFieldResolver<unknown, any> = (_root, _args) => {
             country: "Ukraine"
         },
         {
-            id: 1,
+            id: 2,
             name: "Lviv",
             chiefArchitector: "Ivane",
             country: "Ukraine"

@@ -5,13 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
+import { apolloClient as client} from './client/apolloClient';
+import { ApolloProvider } from '@apollo/react-common';
 
 const Root = () => (
     <BrowserRouter>
         <CssBaseline />
-        {/* <ApolloProvider client={client}> */}
+        <ApolloProvider client={client}>
             <App />
-        {/* </ApolloProvider> */}
+        </ApolloProvider>
     </BrowserRouter>
 )
 
