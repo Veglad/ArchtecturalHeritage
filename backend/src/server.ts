@@ -5,6 +5,9 @@ import graphqlHTTP from 'express-graphql'
 import { makeExecutableSchema } from 'graphql-tools'
 import cors, { CorsOptions } from 'cors'
 import resolverMap from './resolvers/resolverMap'
+import { Context } from './dto/Context'
+import PgRepository from './db/PgRepository'
+import { Pool } from 'pg'
 
 const PORT = 5000
 
@@ -18,6 +21,16 @@ const schema = makeExecutableSchema({
     resolvers: resolverMap
 })
 
+const pool = new Pool({
+    user: '',
+    host: 'localhost',
+    database: 'ArchitectureHeritage',
+    password: '1234',
+    port: 5432,
+  })
+
+const repository = new PgRepository(pool)
+
 const app = express()
 
 app.use(cors(corsOptions))
@@ -27,6 +40,9 @@ app.use('/graphql',
     graphqlHTTP(
         () => ({
             schema,
+            context: {
+                repository
+            } as Context,
             graphiql: true
         })
     ));

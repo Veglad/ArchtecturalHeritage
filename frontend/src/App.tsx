@@ -23,7 +23,6 @@ const App: React.FC = () => {
         </Box>
     </Box>
 )
-  // return <Buildings buildings={buildings}/>
 }
 
 export default App;
