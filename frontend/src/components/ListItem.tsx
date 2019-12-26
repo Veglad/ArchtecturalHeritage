@@ -4,11 +4,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-
 type Props = {
     leftValue: string
     rightValue: string
-
+    editClicked: () => void
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 )
 
-const ListItem: React.FC<Props> = ({ leftValue, rightValue }) => {
+const ListItem: React.FC<Props> = ({ leftValue, rightValue, editClicked }) => {
     const classes = useStyles()
     return <Container maxWidth='md'>
         <Paper className={classes.root}>
@@ -41,7 +40,7 @@ const ListItem: React.FC<Props> = ({ leftValue, rightValue }) => {
                     <IconButton>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={() => editClicked()}>
                         <EditIcon />
                     </IconButton>
                 </Box>
